@@ -103,6 +103,7 @@ function playRound(playerSelection, computerSelection) {
  * Restart while loop
  */
 function game() {
+    
     let playerScore = 0
     let computerScore = 0
     let gameContinue = true
@@ -110,16 +111,17 @@ function game() {
     while(gameContinue) {
         if (playerScore === 3) {
             alert("You win the game of Rock Paper Scissors! The score was " + playerScore + "-" + computerScore)
-            gameContinue = false
-            return true
+            gameContinue = confirm("Would you like to play again?")
+            playerScore = 0
+            computerScore = 0
+            continue
         }
         else if (computerScore == 3) {
-            
-            console.log("Player score: " + playerScore)
-            console.log("Computer score: 3")
             alert("You lost the game of Rock Paper Scissors! The score was " + playerScore + "-" + computerScore)
-            gameContinue = false
-            return false
+            gameContinue = confirm("Would you like to play again?")
+            playerScore = 0
+            computerScore = 0
+            continue
         }
 
         playerSelection = prompt("Enter rock, paper or scissors: ")
@@ -139,4 +141,5 @@ function game() {
     }
 }
 
+alert("Welcome to Rock Paper Scissors! You will play against a Computer in a best out of 3. Let's play!")
 game()
