@@ -1,6 +1,6 @@
 const choices = ["rock","paper","scissors"]
-var computerSelection = null
-var playerSelection = null
+let computerSelection = null
+let playerSelection = null
 
 /** 
  * This function will randomly return "rock", "paper", or "scissors"
@@ -46,52 +46,97 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase()
     if (playerSelection === "rock") {
        if (computerSelection === "rock") {
-            return "Tie! Rock ties with rock"
+            alert("Tie! Rock ties with rock")
+            return "tie"
        } 
        else if (computerSelection === "paper") {
-            return "You Lose! Paper beats Rock"
-       }
-       else if (computerSelection === "scissors") {
-            return "You Win! Rock beats Scissors"
+            alert("You Lose! Paper beats Rock")
+            return "lose"
        }
        else {
-        console.error("Oh dear the playRound has gone horribly wrong.")
-        return 0
+            alert("You Win! Rock beats Scissors")
+            return "win"
+
        }
     }
     if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            return "You Win! Paper beats rock"
+            alert("You Win! Paper beats rock")
+            return "win"
         } 
         else if (computerSelection === "paper") {
-            return "Tie! Paper ties with paper"
-        }
-        else if (computerSelection === "scissors") {
-            return "You Lose! Scissors beats paper"
+            alert("Tie! Paper ties with paper")
+            return "tie"
         }
         else {
-         console.error("Oh dear the playRound has gone horribly wrong.")
-         return 0
+            alert("You Lose! Scissors beats paper")
+            return "lose"
         }
      }
      if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            return "You Lose! Rock beats scissors"
+            alert("You Lose! Rock beats scissors")
+            return "lose"
         } 
         else if (computerSelection === "paper") {
-            return "You Win! Scissors beats paper"
-        }
-        else if (computerSelection === "scissors") {
-            return "Tie! Scissors ties with scissors"
+            alert("You Win! Scissors beats paper")
+            return "win"
         }
         else {
-         console.error("Oh dear the playRound has gone horribly wrong.")
-         return 0
+            alert("Tie! Scissors ties with scissors")
+            return "tie"
         }
      }
 }
 
-playerSelection = "scisSors"
-computerSelection = computerPlay()
-console.log(computerSelection)
-console.log(playRound(playerSelection,computerSelection))
+/**
+ * First to three points wins
+ * Inside a while loop:
+ * If player score is 3
+ *      Win game, ask if they want to play again
+ * If computer score is 3
+ *      Lose game, ask if they want to play again
+ * Prompt user for rock paper scissors and store in playerSelection
+ * Call computerPlay and store in computerSelection
+ * Call playRound using playerSelection and computerSelection
+ * Return win or loss or tie, add to player or computer score accordingly
+ * Restart while loop
+ */
+function game() {
+    let playerScore = 0
+    let computerScore = 0
+    let gameContinue = true
+    let roundState = null
+    while(gameContinue) {
+        if (playerScore === 3) {
+            alert("You win the game of Rock Paper Scissors! The score was " + playerScore + "-" + computerScore)
+            gameContinue = false
+            return true
+        }
+        else if (computerScore == 3) {
+            
+            console.log("Player score: " + playerScore)
+            console.log("Computer score: 3")
+            alert("You lost the game of Rock Paper Scissors! The score was " + playerScore + "-" + computerScore)
+            gameContinue = false
+            return false
+        }
+
+        playerSelection = prompt("Enter rock, paper or scissors: ")
+        computerSelection = computerPlay()
+        roundState = playRound(playerSelection,computerSelection)
+        if (roundState === "tie") {
+            continue
+        }
+        else if (roundState === "win") {
+            playerScore += 1
+            continue
+        }
+        else if (roundState === "lose") {
+            computerScore += 1
+            continue
+        }
+    }
+}
+
+game()
