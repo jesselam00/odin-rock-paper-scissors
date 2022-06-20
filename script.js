@@ -124,7 +124,7 @@ function game() {
             continue
         }
 
-        playerSelection = prompt("Enter rock, paper or scissors: ")
+        playerSelection = prompt("Enter rock, paper or scissors. The score is " + playerScore + " - " + computerScore)
         computerSelection = computerPlay()
         roundState = playRound(playerSelection,computerSelection)
         if (roundState === "tie") {
