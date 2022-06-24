@@ -31,13 +31,13 @@ function decideResults(outcome, playerSelection, computerSelection) {
     const playerSelectionUpper = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
     const computerSelectionUpper = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
     if (outcome === "tie") {
-        resultsDiv.textContent = `It's a tie! ${playerSelectionUpper} ties with ${computerSelectionUpper}.`
+        return `It's a tie! ${playerSelectionUpper} ties with ${computerSelectionUpper}.`
     }
     else if (outcome === "win") {
-        resultsDiv.textContent = `You Win! ${playerSelectionUpper} beats ${computerSelectionUpper}!`
+        return `You Win! ${playerSelectionUpper} beats ${computerSelectionUpper}!`
     }
     else {
-        resultsDiv.textContent = `You Lose! ${computerSelectionUpper} beats ${playerSelectionUpper}...`
+        return `You Lose! ${computerSelectionUpper} beats ${playerSelectionUpper}...`
     }
 }
 
@@ -71,55 +71,40 @@ function playRound(e) {
     if (playerSelection === "rock") {
        if (computerSelection === "rock") {
             roundOutcome = "tie"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
        } 
        else if (computerSelection === "paper") {
             roundOutcome = "lose"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
        }
        else {
             roundOutcome = "win"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
 
        }
     }
-    if (playerSelection === "paper") {
+    else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             roundOutcome = "win"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
         } 
         else if (computerSelection === "paper") {
             roundOutcome = "tie"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
         }
         else {
             roundOutcome = "lose"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
         }
      }
-     if (playerSelection === "scissors") {
+    else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
             roundOutcome = "lose"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
         } 
         else if (computerSelection === "paper") {
             roundOutcome = "win"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
         }
         else {
             roundOutcome = "tie"
-            decideResults(roundOutcome,playerSelection,computerSelection)
-            return roundOutcome
         }
      }
+    const resultText = decideResults(roundOutcome,playerSelection,computerSelection)
+    resultsDiv.textContent = resultText
+    return roundOutcome
 }
 
 /**
