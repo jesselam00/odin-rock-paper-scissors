@@ -1,6 +1,7 @@
 const choices = ["rock","paper","scissors"]
 let computerSelection = null
 let playerSelection = null
+let roundOutcome = null
 
 /** 
  * This function will randomly return "rock", "paper", or "scissors"
@@ -26,6 +27,20 @@ function computerPlay() {
     }
 }
 
+function decideResults(outcome, playerSelection, computerSelection) {
+    const playerSelectionUpper = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    const computerSelectionUpper = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    if (outcome === "tie") {
+        resultsDiv.textContent = `It's a tie! ${playerSelectionUpper} ties with ${computerSelectionUpper}.`
+    }
+    else if (outcome === "win") {
+        resultsDiv.textContent = `You Win! ${playerSelectionUpper} beats ${computerSelectionUpper}!`
+    }
+    else {
+        resultsDiv.textContent = `You Lose! ${computerSelectionUpper} beats ${playerSelectionUpper}...`
+    }
+}
+
 /**
  * if player is rock:
  *      win if computer is scissors 
@@ -42,49 +57,67 @@ function computerPlay() {
  * @param {*} playerSelection 
  * @param {*} computerSelection 
  */
-function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase()
+function playRound(e) {
+    if (this.classList.contains("rock")) {
+        playerSelection = "rock"
+    }
+    else if (this.classList.contains("paper")) {
+        playerSelection = "paper"
+    }
+    else {
+        playerSelection = "scissors"
+    }
+    computerSelection = computerPlay()
     if (playerSelection === "rock") {
        if (computerSelection === "rock") {
-            alert("Tie! Rock ties with rock")
-            return "tie"
+            roundOutcome = "tie"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
        } 
        else if (computerSelection === "paper") {
-            alert("You Lose! Paper beats Rock")
-            return "lose"
+            roundOutcome = "lose"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
        }
        else {
-            alert("You Win! Rock beats Scissors")
-            return "win"
+            roundOutcome = "win"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
 
        }
     }
     if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            alert("You Win! Paper beats rock")
-            return "win"
+            roundOutcome = "win"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
         } 
         else if (computerSelection === "paper") {
-            alert("Tie! Paper ties with paper")
-            return "tie"
+            roundOutcome = "tie"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
         }
         else {
-            alert("You Lose! Scissors beats paper")
-            return "lose"
+            roundOutcome = "lose"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
         }
      }
      if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            alert("You Lose! Rock beats scissors")
-            return "lose"
+            roundOutcome = "lose"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
         } 
         else if (computerSelection === "paper") {
-            alert("You Win! Scissors beats paper")
-            return "win"
+            roundOutcome = "win"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
         }
         else {
-            alert("Tie! Scissors ties with scissors")
-            return "tie"
+            roundOutcome = "tie"
+            decideResults(roundOutcome,playerSelection,computerSelection)
+            return roundOutcome
         }
      }
 }
@@ -102,6 +135,7 @@ function playRound(playerSelection, computerSelection) {
  * Return win or loss or tie, add to player or computer score accordingly
  * Restart while loop
  */
+/*
 function game() {
     
     let playerScore = 0
@@ -140,6 +174,17 @@ function game() {
         }
     }
 }
+*/
 
-alert("Welcome to Rock Paper Scissors! You will play against a Computer in a best out of 3. Let's play!")
-game()
+//alert("Welcome to Rock Paper Scissors! You will play against a Computer in a best out of 3. Let's play!")
+
+
+const rockButton = document.querySelector(".rock")
+rockButton.selection = "rock"
+const paperButton = document.querySelector(".paper")
+paperButton.selection = "paper"
+const scissorsButton = document.querySelector(".scissors")
+scissorsButton.selection = "scissors"
+const playButtons = document.querySelectorAll(".play-button")
+playButtons.forEach(playButton => playButton.addEventListener("click",playRound))
+const resultsDiv = document.querySelector(".results")
