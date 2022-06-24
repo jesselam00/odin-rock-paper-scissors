@@ -2,6 +2,8 @@ const choices = ["rock","paper","scissors"]
 let computerSelection = null
 let playerSelection = null
 let roundOutcome = null
+let playerScore = 0
+let computerScore = 0
 
 /** 
  * This function will randomly return "rock", "paper", or "scissors"
@@ -77,7 +79,6 @@ function playRound(e) {
        }
        else {
             roundOutcome = "win"
-
        }
     }
     else if (playerSelection === "paper") {
@@ -102,7 +103,23 @@ function playRound(e) {
             roundOutcome = "tie"
         }
      }
-    const resultText = decideResults(roundOutcome,playerSelection,computerSelection)
+    if (roundOutcome === "win") {
+        playerScore += 1
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`
+    }
+    else if (roundOutcome === "lose") {
+        computerScore += 1
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`
+    }
+    let resultText = decideResults(roundOutcome,playerSelection,computerSelection)
+    if (playerScore === 5) {
+        resultText += " YOU WON THE GAME!!"
+        replayButton.style.visibility = "visible"
+    }
+    else if (computerScore === 5) {
+        resultText += " YOU LOST THE GAME!"
+        replayButton.style.visibility = "visible"
+    }
     resultsDiv.textContent = resultText
     return roundOutcome
 }
@@ -163,7 +180,10 @@ function game() {
 
 //alert("Welcome to Rock Paper Scissors! You will play against a Computer in a best out of 3. Let's play!")
 
-
+const playerScoreDiv = document.querySelector(".player-score")
+playerScoreDiv.textContent = `Player Score: ${playerScore}`
+const computerScoreDiv = document.querySelector(".computer-score")
+computerScoreDiv.textContent = `Computer Score: ${computerScore}`
 const rockButton = document.querySelector(".rock")
 rockButton.selection = "rock"
 const paperButton = document.querySelector(".paper")
@@ -173,3 +193,4 @@ scissorsButton.selection = "scissors"
 const playButtons = document.querySelectorAll(".play-button")
 playButtons.forEach(playButton => playButton.addEventListener("click",playRound))
 const resultsDiv = document.querySelector(".results")
+const replayButton = document.querySelector(".replay-button")
