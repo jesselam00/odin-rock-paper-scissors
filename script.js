@@ -114,14 +114,32 @@ function playRound(e) {
     let resultText = decideResults(roundOutcome,playerSelection,computerSelection)
     if (playerScore === 5) {
         resultText += " YOU WON THE GAME!!"
-        replayButton.style.visibility = "visible"
+        replayButton.style.display = "inline"
+        rockButton.disabled = true
+        scissorsButton.disabled = true
+        paperButton.disabled = true
     }
     else if (computerScore === 5) {
         resultText += " YOU LOST THE GAME!"
-        replayButton.style.visibility = "visible"
+        replayButton.style.display = "inline"
+        rockButton.disabled = true
+        scissorsButton.disabled = true
+        paperButton.disabled = true
     }
     resultsDiv.textContent = resultText
     return roundOutcome
+}
+
+function resetGame(e) {
+    replayButton.style.display = "none"
+    playerScore = 0
+    playerScoreDiv.textContent = `Player Score: ${playerScore}`
+    computerScore = 0
+    computerScoreDiv.textContent = `Computer Score: ${computerScore}`
+    rockButton.disabled = false
+    scissorsButton.disabled = false
+    paperButton.disabled = false
+    resultsDiv.textContent = ""
 }
 
 /**
@@ -194,3 +212,4 @@ const playButtons = document.querySelectorAll(".play-button")
 playButtons.forEach(playButton => playButton.addEventListener("click",playRound))
 const resultsDiv = document.querySelector(".results")
 const replayButton = document.querySelector(".replay-button")
+replayButton.addEventListener("click", resetGame)
