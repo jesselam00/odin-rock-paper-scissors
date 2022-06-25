@@ -63,19 +63,19 @@ body {
 }
 
 .play-button-container .rock {
-    background: url(./img/rock.gif);
+    background: url(img/rock.gif);
     background-size: cover;
     background-repeat:   no-repeat;
     background-position: center center;
 }
 .play-button-container .paper {
-    background: url(./img/paper.gif);
+    background: url(img/paper.gif);
     background-size: cover;
     background-repeat:   no-repeat;
     background-position: center center;
 }
 .play-button-container .scissors {
-    background: url(./img/scissors.gif);
+    background: url(img/scissors.gif);
     background-size: cover;
     background-repeat:   no-repeat;
     background-position: center center;
