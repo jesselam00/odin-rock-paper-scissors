@@ -1,7 +1,93 @@
 html {
-    margin-top: 50px;
+    margin-top: 100px;
     background-color: rgb(32, 32, 32);
-    text-align: center;
     color: white;
     line-height: 48px;
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.score-container {
+    margin-bottom: 100px;
+    padding: 40px;
+    border-style: solid;
+    border: 20px;
+    border-radius: 10px;
+    border-color: black;
+    background-color: rgb(85, 85, 85);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px 100px;
+}
+
+.score-container div {
+    font-size: 36px;
+}
+
+.play-button-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px 100px;
+}
+
+.play-button-container button {
+    margin-bottom: 100px;
+    height: 200px;
+    width: 200px;
+    background-color: rgb(85, 85, 85);
+    border-style: none;
+    border-radius: 10px;
+    color: white;
+    
+}
+
+.play-button-container .rock {
+    background: url(./img/rock.gif);
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+.play-button-container .paper {
+    background: url(./img/paper.gif);
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+.play-button-container .scissors {
+    background: url(./img/scissors.gif);
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+.results {
+    margin-bottom: 50px;
+    font-size: 32px;
+}
+
+.replay-button {
+    height: 80px;
+    width: 200px;
+    background-color: rgb(85, 85, 85);
+    border-style: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
 }

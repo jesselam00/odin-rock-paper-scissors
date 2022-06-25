@@ -9,12 +9,20 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="player-score"></div>
-    <div class="computer-score"></div>
-    <button class="rock play-button">Rock</button>
-    <button class="paper play-button">Paper</button>
-    <button class="scissors play-button">Scissors</button>
-    <div class="results"></div>
+    <div class="score-container">
+        <div class="player-score"></div>
+        <div class="computer-score"></div>
+    </div>
+    <div class="play-button-container">
+        <button class="rock play-button"></button>
+        <button class="paper play-button"></button>
+        <button class="scissors play-button"></button>
+    </div>   
+    <div class="results">Select Rock, Paper, or Scissors!</div>
     <button class="replay-button" hidden>Replay?</button>
+    
+    <audio class="rock" src="./sounds/kick.wav"></audio>
+    <audio class="paper" src="./sounds/boom.wav"></audio>
+    <audio class="scissors" src="./sounds/snare.wav"></audio>
 </body>
 </html>

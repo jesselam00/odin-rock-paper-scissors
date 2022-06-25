@@ -139,64 +139,25 @@ function resetGame(e) {
     rockButton.disabled = false
     scissorsButton.disabled = false
     paperButton.disabled = false
-    resultsDiv.textContent = ""
+    resultsDiv.textContent = "Select Rock, Paper, or Scissors!"
 }
 
-/**
- * First to three points wins
- * Inside a while loop:
- * If player score is 3
- *      Win game, ask if they want to play again
- * If computer score is 3
- *      Lose game, ask if they want to play again
- * Prompt user for rock paper scissors and store in playerSelection
- * Call computerPlay and store in computerSelection
- * Call playRound using playerSelection and computerSelection
- * Return win or loss or tie, add to player or computer score accordingly
- * Restart while loop
- */
-/*
-function game() {
-    
-    let playerScore = 0
-    let computerScore = 0
-    let gameContinue = true
-    let roundState = null
-    while(gameContinue) {
-        if (playerScore === 3) {
-            alert("You win the game of Rock Paper Scissors! The score was " + playerScore + "-" + computerScore)
-            gameContinue = confirm("Would you like to play again?")
-            playerScore = 0
-            computerScore = 0
-            continue
-        }
-        else if (computerScore == 3) {
-            alert("You lost the game of Rock Paper Scissors! The score was " + playerScore + "-" + computerScore)
-            gameContinue = confirm("Would you like to play again?")
-            playerScore = 0
-            computerScore = 0
-            continue
-        }
 
-        playerSelection = prompt("Enter rock, paper or scissors. The score is " + playerScore + " - " + computerScore)
-        computerSelection = computerPlay()
-        roundState = playRound(playerSelection,computerSelection)
-        if (roundState === "tie") {
-            continue
-        }
-        else if (roundState === "win") {
-            playerScore += 1
-            continue
-        }
-        else if (roundState === "lose") {
-            computerScore += 1
-            continue
-        }
+function playSound(e) {
+    let soundToPlay = null
+    if (this.classList.contains("rock")) {
+        soundToPlay = "rock"
     }
+    else if (this.classList.contains("paper")) {
+        soundToPlay = "paper"
+    }
+    else {
+        soundToPlay = "scissors"
+    }
+    const audio = document.querySelector(`audio[class="${soundToPlay}"]`)
+    audio.currentTime = 0
+    audio.play()
 }
-*/
-
-//alert("Welcome to Rock Paper Scissors! You will play against a Computer in a best out of 3. Let's play!")
 
 const playerScoreDiv = document.querySelector(".player-score")
 playerScoreDiv.textContent = `Player Score: ${playerScore}`
@@ -210,6 +171,7 @@ const scissorsButton = document.querySelector(".scissors")
 scissorsButton.selection = "scissors"
 const playButtons = document.querySelectorAll(".play-button")
 playButtons.forEach(playButton => playButton.addEventListener("click",playRound))
+playButtons.forEach(playButton => playButton.addEventListener("click",playSound))
 const resultsDiv = document.querySelector(".results")
 const replayButton = document.querySelector(".replay-button")
 replayButton.addEventListener("click", resetGame)
