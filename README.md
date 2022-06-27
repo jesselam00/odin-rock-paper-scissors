@@ -2,7 +2,7 @@
 
 Rock Paper Scissors for The Odin Project
 
-https://www.theodinproject.com/lessons/foundations-rock-paper-scissors#quick-exercises-before-starting 
+https://www.theodinproject.com/lessons/foundations-rock-paper-scissors
 
 odin-rock-paper-scissors is a website built in JavaScript and is my first JavaScript program built from scratch!
 
